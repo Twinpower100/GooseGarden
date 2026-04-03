@@ -270,7 +270,7 @@ export default async function HomePage({
 
   return (
     <div className="relative overflow-hidden">
-      <section id="hero" className="relative min-h-screen overflow-hidden px-6 pb-16 pt-32 md:px-12 md:pb-24 md:pt-40">
+      <section id="hero" className="relative min-h-screen overflow-hidden px-6 pb-16 pt-28 md:px-12 md:pb-24 md:pt-40">
         {homeTyped.hero_image && typeof homeTyped.hero_image === 'object' && homeTyped.hero_image.url ? (
           <Image
             src={homeTyped.hero_image.url}
@@ -305,7 +305,7 @@ export default async function HomePage({
               initial={{ opacity: 0, y: 32 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
-              className="max-w-5xl font-serif text-5xl leading-[0.96] tracking-[-0.04em] sm:text-6xl md:text-7xl lg:text-[5.6rem]"
+              className="max-w-5xl font-serif text-[3.35rem] leading-[0.92] tracking-[-0.045em] sm:text-6xl md:text-7xl lg:text-[5.6rem]"
             >
               {homeTyped.hero_title || 'Crafting Timeless Landscapes'}
             </motion.h1>
@@ -323,17 +323,17 @@ export default async function HomePage({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.28 }}
-              className="mt-10 flex flex-wrap gap-4"
+              className="mt-10 flex max-w-sm flex-col items-stretch gap-3 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center sm:gap-4"
             >
               <a
                 href="#contact"
-                className="rounded-full bg-[#d9d4c7] px-7 py-4 text-[0.74rem] font-semibold uppercase tracking-[0.28em] text-premium-950 transition-colors hover:bg-white"
+                className="inline-flex w-full items-center justify-center rounded-full bg-[#d9d4c7] px-6 py-4 text-center text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-premium-950 transition-colors hover:bg-white sm:w-auto sm:px-7 sm:text-[0.74rem] sm:tracking-[0.28em]"
               >
                 {homeTyped.hero_cta_text || t.heroCta}
               </a>
               <a
                 href="#portfolio"
-                className="rounded-full border border-white/16 bg-white/8 px-7 py-4 text-[0.74rem] uppercase tracking-[0.28em] text-white/84 transition-colors hover:bg-white/14 hover:text-white"
+                className="inline-flex w-full items-center justify-center rounded-full border border-white/16 bg-white/8 px-6 py-4 text-center text-[0.68rem] uppercase tracking-[0.24em] text-white/84 transition-colors hover:bg-white/14 hover:text-white sm:w-auto sm:px-7 sm:text-[0.74rem] sm:tracking-[0.28em]"
               >
                 {t.heroSecondary}
               </a>
