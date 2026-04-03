@@ -2,18 +2,20 @@
   "name": "goose-garden",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3005",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 3005",
     "lint": "next lint",
     "payload": "payload",
     "generate:types": "payload generate:types",
-    "generate:importmap": "payload generate:importmap"
+    "generate:importmap": "payload generate:importmap",
+    "seed": "npx tsx src/seed.ts"
   },
   "dependencies": {
     "@payloadcms/db-postgres": "^3.81.0",
-    "@payloadcms/next": "3.1.0",
+    "@payloadcms/next": "^3.81.0",
     "@payloadcms/richtext-lexical": "^3.81.0",
     "clsx": "^2.1.1",
     "graphql": "^16.8.1",
@@ -21,7 +23,7 @@
     "motion": "^11.11.0",
     "next": "^15.5.14",
     "nodemailer": "^8.0.4",
-    "payload": "3.1.0",
+    "payload": "^3.81.0",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "tailwind-merge": "^2.5.2"
