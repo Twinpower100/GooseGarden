@@ -19,7 +19,9 @@ services:
       test: ["CMD-SHELL", "pg_isready -U goose_garden_admin -d goose_garden"]
       interval: 5s
       timeout: 5s
-      retries: 10
+      retries: 40
+      # Первый старт с большим .sql в initdb.d может идти минуты — без grace period healthcheck «убивает» цепочку app
+      start_period: 120s
 
   app:
     build:
