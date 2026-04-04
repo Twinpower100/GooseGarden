@@ -15,19 +15,28 @@ services:
       # Скрипты .sql / .sh из этой папки выполняются ОДИН РАЗ при первом создании пустого тома.
       # См. docker/postgres/init/README.md и scripts/dump-local-db.ps1
       - ./docker/postgres/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U goose_garden_admin -d goose_garden"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
 
   app:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        # Должен совпадать с публичным URL сайта (медиа, OG, next/image patterns)
+        NEXT_PUBLIC_SERVER_URL: ${NEXT_PUBLIC_SERVER_URL:-http://94.183.155.160:3005}
     container_name: goosegarden_app
     restart: unless-stopped
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     environment:
       DATABASE_URI: postgresql://goose_garden_admin:goose_garden_password@postgres:5432/goose_garden
       PAYLOAD_SECRET: replace_with_long_random_secret_at_least_32_chars
-      NEXT_PUBLIC_SERVER_URL: http://localhost:3005
+      NEXT_PUBLIC_SERVER_URL: ${NEXT_PUBLIC_SERVER_URL:-http://94.183.155.160:3005}
     ports:
       - "3005:3005"
     volumes:

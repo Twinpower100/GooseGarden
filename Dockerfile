@@ -9,6 +9,10 @@ RUN npm install --legacy-peer-deps
 
 COPY . .
 
+# NEXT_PUBLIC_* подставляется в клиентский бандл на этапе build — задайте через compose build.args
+ARG NEXT_PUBLIC_SERVER_URL=http://localhost:3005
+ENV NEXT_PUBLIC_SERVER_URL=$NEXT_PUBLIC_SERVER_URL
+
 RUN mkdir -p /app/media
 
 RUN npm run build
