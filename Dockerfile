@@ -4,7 +4,8 @@ FROM mirror.gcr.io/library/node:20-bookworm-slim
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm install
+# Payload 3.81 + next@15.5.x: peer range mismatch; локально lock мог собираться иначе
+RUN npm install --legacy-peer-deps
 
 COPY . .
 
