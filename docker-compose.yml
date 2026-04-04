@@ -11,7 +11,8 @@ services:
     ports:
       - "5433:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      # PostgreSQL 18+ (официальный образ): том только на /var/lib/postgresql, не на .../data
+      - postgres_data:/var/lib/postgresql
       # Скрипты .sql / .sh из этой папки выполняются ОДИН РАЗ при первом создании пустого тома.
       # См. docker/postgres/init/README.md и scripts/dump-local-db.ps1
       - ./docker/postgres/init:/docker-entrypoint-initdb.d:ro

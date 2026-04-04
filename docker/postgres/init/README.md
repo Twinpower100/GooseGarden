@@ -26,6 +26,8 @@ docker run --rm -e PGPASSWORD="ваш_пароль" -v "${PWD}/docker/postgres/i
 
 ### Шаг 2. Поднять Postgres с этим дампом
 
+В `docker-compose.yml` для образа **PostgreSQL 18+** том монтируется в **`/var/lib/postgresql`** (не в `/var/lib/postgresql/data`) — так требует официальный образ. Старый том с примонтированным `.../data` и PG 18 несовместим: контейнер падает с сообщением про `unused mount/volume`; нужен **`docker compose down -v`** и новый первый старт с дампом.
+
 Скрипты из `docker-entrypoint-initdb.d` выполняются **только если том данных пустой** (первый запуск).
 
 1. Остановить и **удалить том** с данными Postgres (данные в контейнере будут стёрты):
