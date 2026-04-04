@@ -17,3 +17,7 @@ media/
 credentials.md
 
 .codex-tmp/
+
+# Дампы БД для Docker (не коммитить)
+docker/postgres/init/*.sql
+docker/postgres/init/*.sql.gz
